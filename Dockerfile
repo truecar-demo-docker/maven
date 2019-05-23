@@ -47,6 +47,7 @@ RUN apt-get update \
  && curl -sSL https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -C /build/opencv_source --strip-components=1 -xzf - \
  && ( cd /build && export PATH=${JAVA_HOME}/bin:${PATH} \
    && cmake -Wno-dev \
+        -D ENABLE_PRECOMPILED_HEADERS=OFF \
         -D BUILD_EXAMPLES=OFF \
         -D BUILD_PERF_TESTS=OFF \
         -D BUILD_SHARED_LIBS=OFF \
@@ -55,7 +56,8 @@ RUN apt-get update \
         -D CMAKE_INSTALL_PREFIX=/usr/local \
         -D INSTALL_C_EXAMPLES=OFF \
         -D INSTALL_PYTHON_EXAMPLES=OFF \
-        -D PYTHON_EXECUTABLE=/usr/bin/python2.7 opencv_source ) \
+        -D PYTHON_EXECUTABLE=/usr/bin/python2.7 \
+        opencv_source ) \
  && ( cd /build && make install ) \
  && rm -rf /build \
  && ln -s /usr/local/share/OpenCV/java/opencv-249.jar ${JAVA_HOME}/lib/opencv-249.jar \
