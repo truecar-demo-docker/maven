@@ -39,7 +39,7 @@ RUN mkdir -p /build/hadoop_source \
 ENV LD_LIBRARY_PATH /usr/local/hadoop/lib/native
 
 ## opencv
-ARG OPENCV_VERSION=2.4.9
+ARG OPENCV_VERSION=4.1.0
 RUN apt-get update \
  && apt-get install --no-install-recommends -y \
         libjasperreports-java \
@@ -66,5 +66,5 @@ RUN apt-get update \
         opencv_source ) \
  && ( cd /build && make install ) \
  && rm -rf /build \
- && ln -s /usr/local/share/OpenCV/java/opencv-249.jar ${JAVA_HOME}/lib/opencv-249.jar \
- && ln -s /usr/local/share/OpenCV/java/libopencv_java249.so /usr/lib/libopencv_java249.so
+ && ln -s /usr/local/share/OpenCV/java/opencv-410.jar ${JAVA_HOME}/lib/opencv-410.jar \
+ && ln -s /usr/local/share/OpenCV/java/libopencv_java410.so /usr/lib/libopencv_java410.so
