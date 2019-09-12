@@ -66,5 +66,5 @@ RUN apt-get update \
         opencv_source ) \
  && ( cd /build && make install ) \
  && rm -rf /build \
- && ln -s /usr/local/share/OpenCV/java/opencv-410.jar ${JAVA_HOME}/lib/opencv-410.jar \
- && ln -s /usr/local/share/OpenCV/java/libopencv_java410.so /usr/lib/libopencv_java410.so
+ && ln -s /usr/local/share/java/opencv4/opencv-410.jar ${JAVA_HOME}/lib/opencv-410.jar \
+ && ln -s /usr/local/share/java/opencv4/libopencv_java410.so /usr/lib/libopencv_java410.so
