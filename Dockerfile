@@ -68,3 +68,12 @@ RUN apt-get update \
  && rm -rf /build \
  && ln -s /usr/local/share/java/opencv4/opencv-410.jar ${JAVA_HOME}/lib/opencv-410.jar \
  && ln -s /usr/local/share/java/opencv4/libopencv_java410.so /usr/lib/libopencv_java410.so
+
+## Install Python3.6
+RUN mkdir -p /build/python3.6 && \
+    curl -sSL https://www.python.org/ftp/python/3.6.9/Python-3.6.9.tgz | tar -C /build/python3.6 --strip-components=1 -xzf - && \
+    ( cd /build/python3.6 && \
+    ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" --with-ensurepip=install && \
+    make -j8 && \
+    make altinstall ) && \
+    rm -rf /build
