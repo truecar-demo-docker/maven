@@ -13,7 +13,8 @@ RUN apt-get update \
       pkg-config \
       python \
       zlib1g \
-      zlib1g-dev
+      zlib1g-dev \
+      xmlstarlet
 
 ARG PROTOBUF_VERSION=2.5.0
 ### protocol buffers (hadoop requires an old version)
