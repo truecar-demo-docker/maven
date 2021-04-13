@@ -1,0 +1,6 @@
+steps:
+  - label: ':docker: Maven (Data Engineering)'
+    plugins:
+      - seek-oss/docker-ecr-publish#v1.2.0:
+          add-latest-tag: false
+          ecr-name: maven
