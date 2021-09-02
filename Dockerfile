@@ -12,6 +12,7 @@ ENV XDG_CACHE_HOME="/var/tmp"
 RUN \
   LC_ALL=C apt-get update -yqq && \
   LC_ALL=C apt-get install -yqq --no-install-recommends \
+    ant \
     build-essential \
     cmake \
     curl \
@@ -66,6 +67,12 @@ RUN \
         -D BUILD_PERF_TESTS=OFF \
         -D BUILD_SHARED_LIBS=ON \
         -D BUILD_TESTS=OFF \
+        -D BUILD_opencv_core=ON \
+        -D BUILD_opencv_imgcodecs=ON \
+        -D BUILD_opencv_imgproc=ON \
+        -D BUILD_JAVA=ON \
+        -D BUILD_opencv_java=ON \
+        -D BUILD_opencv_java_bindings_gen=ON \
         -D CMAKE_BUILD_TYPE=Release \
         -D CMAKE_INSTALL_PREFIX=/usr/local \
         -D ENABLE_PRECOMPILED_HEADERS=OFF \
