@@ -1,4 +1,4 @@
-FROM maven:3-jdk-11
+FROM centos:7.9.2009
 
 ARG OPENCV_VERSION=4.1.0
 ARG PYTHON_VERSION=3.8.6
@@ -9,40 +9,34 @@ ENV PATH="${PYENV_ROOT}/shims:${PATH}"
 ENV LD_LIBRARY_PATH /usr/local/hadoop/lib/native
 ENV XDG_CACHE_HOME="/var/tmp"
 
-RUN \
-  LC_ALL=C apt-get update -yqq && \
-  LC_ALL=C apt-get install -yqq --no-install-recommends \
+RUN yum update -y && \
+  yum install -y maven \
     ant \
-    build-essential \
+    bzip2 \
+    bzip2-devel \
     cmake \
     curl \
+    gcc \
+    gcc-c++ \
     git \
-    libbz2-dev \
-    libffi-dev \
-    libjpeg-dev \
-    liblzma-dev \
-    libncurses5-dev \
-    libpng-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    libtiff5-dev \
-    libxml2-dev \
-    libxmlsec1-dev \
+    libffi-devel \
+    libpng-devel \
+    libtiff-devel \
+    libxml2-devel \
     llvm \
     make \
+    ncurses-devel \
+    openjpeg-devel \
+    openssl-devel \
+    readline-devel \
+    sqlite-devel \
     unzip \
-    xmlstarlet \
-    xz-utils \
+    xmlsec1-devel \
+    xz \
+    xz-devel \
     zip \
-    zlib1g-dev \
-  && rm -rf \
-    /var/lib/apt/lists/* \
-    /tmp/* \
-    /var/tmp/* \
-    /usr/share/man \
-    /usr/share/doc \
-    /usr/share/doc-base
+    zlib-devel && \
+  yum clean all
 
 ## hadoop native
 RUN \
