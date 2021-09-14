@@ -53,8 +53,9 @@ RUN \
 RUN \
   git clone --depth=1 https://github.com/pyenv/pyenv.git ${PYENV_ROOT} && \
   ${PYENV_ROOT}/bin/pyenv install ${PYTHON_VERSION} && echo ${PYTHON_VERSION} > ${PYENV_ROOT}/version && \
+  rm -f ${PYENV_ROOT}/shims/python # python will remain python2 && \
   ${PYENV_ROOT}/shims/python3 -m pip install --upgrade pip && \
-  rm -f ${PYENV_ROOT}/shims/python # python will remain python2
+  ${PYENV_ROOT}/shims/python3 -m pip install --upgrade wheel
 
 ## opencv
 RUN \
