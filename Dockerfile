@@ -52,30 +52,6 @@ RUN \
 
 ## opencv
 RUN \
-  mkdir -p /build/opencv_source && \
-  curl -sSL https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -C /build/opencv_source --strip-components=1 -xzf -  && \
-  ( cd /build && export PATH=${JAVA_HOME}/bin:${PATH} && \
-  sed -i '/add_extra_compiler_option(-Werror=address)/d' opencv_source/cmake/OpenCVCompilerOptions.cmake && \
-  cmake -Wno-dev \
-        -D BUILD_EXAMPLES=OFF \
-        -D BUILD_PERF_TESTS=OFF \
-        -D BUILD_SHARED_LIBS=ON \
-        -D BUILD_TESTS=OFF \
-        -D BUILD_opencv_core=ON \
-        -D BUILD_opencv_imgcodecs=ON \
-        -D BUILD_opencv_imgproc=ON \
-        -D BUILD_JAVA=ON \
-        -D BUILD_opencv_java=ON \
-        -D BUILD_opencv_java_bindings_gen=ON \
-        -D CMAKE_BUILD_TYPE=Release \
-        -D CMAKE_INSTALL_PREFIX=/usr/local \
-        -D ENABLE_PRECOMPILED_HEADERS=OFF \
-        -D INSTALL_C_EXAMPLES=OFF \
-        -D INSTALL_PYTHON_EXAMPLES=OFF \
-        -D PYTHON_EXECUTABLE=${PYENV_ROOT}/shims/python3 opencv_source ) && \
-  ( cd /build && make install ) && \
-  rm -rf /build && mkdir -p /build && \
-  ln -s /usr/local/share/java/opencv4/opencv-410.jar ${JAVA_HOME}/lib/opencv-410.jar && \
-  ln -s /usr/local/share/java/opencv4/libopencv_java410.so /usr/lib/libopencv_java410.so
+  rpm -Uvh https://artifactory.corp.tc/artifactory/zag-centos6x/TCOpenCV-4.1.0-3.x86_64.rpm
 
 WORKDIR /build
