@@ -28,6 +28,9 @@ RUN yum update -y && \
     ncurses-devel \
     openjpeg-devel \
     openssl-devel \
+    python3 \
+    python3-devel \
+    python3-pip \
     readline-devel \
     sqlite-devel \
     unzip \
