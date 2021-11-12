@@ -38,8 +38,16 @@ RUN yum update -y && \
     xz \
     xz-devel \
     zip \
-    zlib-devel && \
+    zlib-devel \
+    java-11-openjdk-devel \
+    java-11-openjdk && \
   yum clean all
+
+RUN \
+ echo 2 | update-alternatives --config javac
+
+RUN \
+  echo 2 | update-alternatives --config java
 
 ## hadoop native
 RUN \
