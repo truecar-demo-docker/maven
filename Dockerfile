@@ -10,7 +10,7 @@ ENV LD_LIBRARY_PATH /usr/local/hadoop/lib/native
 ENV XDG_CACHE_HOME="/var/tmp"
 
 RUN yum update -y && \
-  yum install -y wget \
+  yum install -y maven \
     ant \
     bzip2 \
     bzip2-devel \
@@ -64,10 +64,5 @@ RUN \
 ## opencv
 RUN \
   rpm -Uvh https://artifactory.corp.tc/artifactory/zag-centos6x/TCOpenCV-4.1.0-3.x86_64.rpm
-
-RUN \
-    wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -P /tmp && \
-    tar xf /tmp/apache-maven-3.8.4-bin.tar.gz -C /opt && \
-    ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/bin/mvn
 
 WORKDIR /build
