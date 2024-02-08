@@ -39,6 +39,8 @@ RUN yum update -y && \
     xz-devel \
     zip \
     zlib-devel \
+    python-devel \
+    postgresql-devel \
     java-11-openjdk-devel \
     java-11-openjdk && \
   yum clean all
