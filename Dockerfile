@@ -2,7 +2,8 @@ FROM centos:7.9.2009
 
 ARG OPENCV_VERSION=4.1.0
 ARG PYTHON_VERSION=3.8.6
-ARG HADOOP_NATIVE=CDH-7.2.7-1.cdh7.2.7.p0.9408337-hadoop-native.tar.bz2
+ARG MAVEN3_VERSION=3.9.6
+ARG HADOOP_NATIVE=CDH-7.2.17-1.cdh7.2.17.p0.42350016-hadoop-native.tar.bz2
 
 ENV PYENV_ROOT="/usr/local/pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PATH}"
@@ -41,6 +42,7 @@ RUN yum update -y && \
     zlib-devel \
     python-devel \
     postgresql-devel \
+    patch \
     java-11-openjdk-devel \
     java-11-openjdk && \
   yum clean all
@@ -68,8 +70,8 @@ RUN \
   rpm -Uvh https://artifactory.corp.tc/artifactory/zag-centos6x/TCOpenCV-4.1.0-3.x86_64.rpm
 
 RUN \
-    wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -P /tmp && \
-    tar xf /tmp/apache-maven-3.8.4-bin.tar.gz -C /opt && \
-    ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/bin/mvn
+    wget https://dlcdn.apache.org/maven/maven-3/${MAVEN3_VERSION}/binaries/apache-maven-${MAVEN3_VERSION}-bin.tar.gz -P /tmp && \
+    tar xf /tmp/apache-maven-${MAVEN3_VERSION}-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-${MAVEN3_VERSION}/bin/mvn /usr/bin/mvn
 
 WORKDIR /build
