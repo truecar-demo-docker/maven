@@ -16,6 +16,28 @@
      | Authentication profiles can be used whenever maven must make a connection to a remote server.
      |-->
     <servers>
+       <server>
+            <id>tcinternal</id>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>Authorization</name>
+                        <value>Bearer ${env.BUILDKITE_ARTIFACTORY_PASSWORD}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
+        <server>
+            <id>snapshots</id>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>Authorization</name>
+                        <value>Bearer ${env.BUILDKITE_ARTIFACTORY_PASSWORD}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
         <server>
             <id>tc-internal-release</id>
             <configuration>
